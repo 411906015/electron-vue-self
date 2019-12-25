@@ -24,5 +24,6 @@
         margin: 0px;
         /*统一设置高度为100%*/
         height: 100%;
+        font-family: "Microsoft YaHei UI";
     }
 </style>
