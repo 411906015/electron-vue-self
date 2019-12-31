@@ -1,7 +1,8 @@
 <template>
-    <div id="bottomNav">
-        <router-link to="/" class="tab">首页</router-link>
-        <router-link to="/mine" class="tab">我的</router-link>
+    <div id="">
+
+        测试&amp;开发 交互系统 v1.0
+
     </div>
 </template>
 

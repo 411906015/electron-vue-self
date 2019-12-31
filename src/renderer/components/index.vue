@@ -1,111 +1,96 @@
 <template>
-  <el-container>
-    <el-header>
-      <span style="color: white;font-size: 18px">
-        TESTER & CODER
-      </span>
-
-      <el-dropdown trigger="click">
-        <span class="el-dropdown-link" style="color: white;">
-          SYSTEM<i class="el-icon-arrow-down el-icon--right"></i>
-        </span>
-        <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item >个人信息</el-dropdown-item>
-          <el-dropdown-item >退出</el-dropdown-item>
-        </el-dropdown-menu>
-      </el-dropdown>
-    </el-header>
-
     <el-container>
+        <el-header>
+            <span style="color: white;font-size: 18px">
+                <a href="/" style=";text-decoration:none; color:white;">TESTER & CODER</a>
+            </span>
+            <el-dropdown trigger="click">
+                <span class="el-dropdown-link" style="color: white;">
+                    SYSTEM<i class="el-icon-arrow-down el-icon--right"></i>
+                </span>
+                <el-dropdown-menu slot="dropdown">
+                    <el-dropdown-item >个人信息</el-dropdown-item>
+                    <el-dropdown-item >退出</el-dropdown-item>
+                </el-dropdown-menu>
+            </el-dropdown>
+        </el-header>
 
-      <el-aside width="210px">
-        <el-menu default-active="1" class="el-menu-vertical-demo" background-color="#393D49" text-color="#fff" :unique-opened = "true" active-text-color="">
-          <div >
-            <el-input placeholder="请输入内容" v-model="search_value" class="input-with-select">
-              <el-button slot="append" icon="el-icon-search" v-on:click="searchFc"></el-button>
-            </el-input>
-            <el-menu-item index="search-1">搜索结果1</el-menu-item>
-          </div>
-          <el-submenu index="1" >
-            <template slot="title">
-              <i class="el-icon-star-on"></i>
-              <span>标记</span>
-            </template>
-            <el-menu-item index="1-1">选项1</el-menu-item>
-            <el-menu-item index="1-2">选项2</el-menu-item>
-          </el-submenu>
+        <el-container>
+            <el-aside width="210px">
+                <el-menu default-active="1" router class="el-menu-vertical-demo" background-color="#393D49" text-color="#fff"
+                         :unique-opened = "true" active-text-color=""
+                         :collapse-transition="true">
+                    <div >
+                        <el-input placeholder="请输入内容" v-model="search_value" class="input-with-select">
+                            <el-button slot="append" icon="el-icon-search" v-on:click="searchFc"></el-button>
+                        </el-input>
+                        <el-menu-item index="search-1">搜索结果1</el-menu-item>
+                    </div>
+                    <el-submenu index="1" >
+                        <template slot="title">
+                            <i class="el-icon-star-on"></i>
+                            <span>标记</span>
+                        </template>
+                        <el-menu-item index="/test1">我的</el-menu-item>
+                        <el-menu-item index="/test2">我的2</el-menu-item>
+                    </el-submenu>
 
 
-          <el-submenu index="2">
-            <template slot="title">
-              <i class="el-icon-user-solid"></i>
-              <span>我的</span>
-            </template>
-            <el-menu-item index="2-1">选项1</el-menu-item>
-            <el-menu-item index="2-2">选项2</el-menu-item>
-          </el-submenu>
+                    <el-submenu index="2">
+                        <template slot="title">
+                            <i class="el-icon-user-solid"></i>
+                            <span>我的</span>
+                        </template>
+                        <el-menu-item index="2-1">选项1</el-menu-item>
+                        <el-menu-item index="2-2">选项2</el-menu-item>
+                    </el-submenu>
 
-          <el-submenu index="3">
-            <template slot="title">
-              <i class="el-icon-folder-checked"></i>
-              <span>已完结</span>
-            </template>
-            <el-menu-item index="3-1">选项1</el-menu-item>
-            <el-menu-item index="3-2">选项2</el-menu-item>
-          </el-submenu>
+                    <el-submenu index="3">
+                        <template slot="title">
+                            <i class="el-icon-folder-checked"></i>
+                            <span>已完结</span>
+                        </template>
+                        <el-menu-item index="3-1">选项1</el-menu-item>
+                        <el-menu-item index="3-2">选项2</el-menu-item>
+                    </el-submenu>
 
-          <el-submenu index="4">
-            <template slot="title">
-              <i class="el-icon-folder-delete"></i>
-              <span>忽略</span>
-            </template>
-            <el-menu-item index="4-1">选项1</el-menu-item>
-            <el-menu-item index="4-2">选项2</el-menu-item>
+                    <el-submenu index="4">
+                        <template slot="title">
+                            <i class="el-icon-folder-delete"></i>
+                            <span>忽略</span>
+                        </template>
+                        <el-menu-item index="4-1">选项1</el-menu-item>
+                        <el-menu-item index="4-2">选项2</el-menu-item>
 
-          </el-submenu>
+                    </el-submenu>
+                </el-menu>
+            </el-aside>
 
-          <!--<el-submenu index="9">-->
-            <!--<template slot="title">-->
-              <!--<i class="el-icon-user-solid"></i>-->
-              <!--<span>导航</span>-->
-            <!--</template>-->
-            <!--<el-menu-item-group>-->
-              <!--<template slot="title">分组一</template>-->
-              <!--<el-menu-item index="9-1">选项1</el-menu-item>-->
-              <!--<el-menu-item index="9-2">选项2</el-menu-item>-->
-            <!--</el-menu-item-group>-->
-            <!--<el-menu-item-group>-->
-              <!--<template slot="title">分组二</template>-->
-              <!--<el-menu-item index="9-1">选项1</el-menu-item>-->
-              <!--<el-menu-item index="9-2">选项2</el-menu-item>-->
-            <!--</el-menu-item-group>-->
-          <!--</el-submenu>-->
+            <el-container>
 
-          <!--<el-menu-item index="5" disabled>-->
-            <!--<i class="el-icon-document"></i>-->
-            <!--<span slot="title">导航一</span>-->
-          <!--</el-menu-item>-->
+                <el-main style="padding: 0px">
+                    <!--<el-tabs  @tab-click="handleClick">-->
+                        <!--<el-tab-pane :label="item.label" :name="item.name" v-for="item in data"></el-tab-pane>-->
+                    <!--</el-tabs>-->
 
-          <!--<el-menu-item index="6">-->
-            <!--<i class="el-icon-setting"></i>-->
-            <!--<span slot="title">导航二</span>-->
-          <!--</el-menu-item>-->
 
-        </el-menu>
-      </el-aside>
+                    <el-tabs v-model="editableTabsValue" type="card" closable  @edit="handleTabsEdit" @tab-click="handleClick">
+                        <el-tab-pane
+                                :key="item.name"
+                                v-for="item in editableTabs"
+                                :label="item.title"
+                                :name="item.name">
+                        </el-tab-pane>
+                    </el-tabs>
 
-      <el-container>
-        <el-main style="padding: 0px">
-          <div id="index" style="text-align: center;margin-top: 300px;font-size: 60px;">
-            测试&amp;开发 交互系统 v1.0
-          </div>
 
-        </el-main>
-        <!--<el-footer>Footer</el-footer>-->
-      </el-container>
+                    <router-view></router-view>
+                </el-main>
+                <!--<el-footer>Footer</el-footer>-->
+            </el-container>
 
+        </el-container>
     </el-container>
-  </el-container>
 </template>
 
 <script>
@@ -115,76 +100,146 @@
             return {
                 info:"fuck",
                 search_value: '',
-                counter:0
+                counter:0,
+                // data:[
+                //     {
+                //         name:'/',label:'首页'
+                //     },
+                //     {
+                //         name:'/test2',label:'首页2'
+                //     }
+                // ],
+                //动态tabs
+                editableTabsValue: '2',
+                editableTabs: [{
+                    title: 'Tab 1',
+                    name: 'test1',
+                    content: 'Tab 1 content'
+                }, {
+                    title: 'Tab 2',
+                    name: 'test2',
+                    content: 'Tab 2 content'
+                }],
+                // tabIndex: 2
             }
         },
         methods:{
             searchFc(){
                 alert(1)
+                axios.get('http://www.mylvadmin.com/electronApi/user/login').then(function(response) {
+                    // handle success
+                    // this.search_value='阿萨德';
+                    console.log(response.data);
+                }).catch(function(error) {
+                    // handle error
+                    console.log(error);
+                })
+            },
+            handleClick(e){
+                // console.log(e.name)
+                // this.data.push({
+                //     name:'5555',label:'666'
+                // })
+                // this.editableTabs.push({
+                //     name:'test2',title:'666'
+                // })
+
+                //切换路由
+                this.$router.push({
+                    path:e.name
+                })
+            },
+            //动态tabs
+            handleTabsEdit(targetName, action) {
+                if (action === 'add') {
+                    let newTabName = ++this.tabIndex + '';
+                    this.editableTabs.push({
+                        title: 'New Tab',
+                        name: newTabName,
+                        // content: 'New Tab content'
+                    });
+                    this.editableTabsValue = newTabName;
+                }
+                if (action === 'remove') {
+                    let tabs = this.editableTabs;
+                    let activeName = this.editableTabsValue;
+                    if (activeName === targetName) {
+                        tabs.forEach((tab, index) => {
+                            if (tab.name === targetName) {
+                                let nextTab = tabs[index + 1] || tabs[index - 1];
+                                if (nextTab) {
+                                    activeName = nextTab.name;
+                                }
+                            }
+                        });
+                    }
+
+                    this.editableTabsValue = activeName;
+                    this.editableTabs = tabs.filter(tab => tab.name !== targetName);
+                }
             }
         }
     }
-    axios.get('http://www.mylvadmin.com/electronApi/user/login').then(function(response) {
-        // handle success
-        this.search_value='阿萨德';
-        console.log(response.data);
-    }).catch(function(error) {
-        // handle error
-        console.log(error);
-    })
+
     // axios.get('http://www.mylvadmin.com/electronApi/user/login')
 </script>
 
-<style>
+<style scoped>
 
-  .el-header, .el-footer {
-    /*background-color: #B3C0D1;*/
-    color: #333;
-    /*background-color: rgb(82, 88, 95);*/
-    background-color: #343747;
-    /*text-align: center;*/
-    line-height: 60px;
-  }
+    .el-header, .el-footer {
+        /*background-color: #B3C0D1;*/
+        color: #333;
+        /*background-color: rgb(82, 88, 95);*/
+        background-color: #343747;
+        /*text-align: center;*/
+        line-height: 60px;
+    }
 
-  .el-aside {
-    /*background-color: #D3DCE6;*/
-    /*background-color: rgb(84, 92, 100);*/
-    background-color: #373b48 !important;
-    color: #333;
-    /*text-align: center;*/
-    /*line-height: 200px;*/
-  }
+    .el-aside {
+        /*background-color: #D3DCE6;*/
+        /*background-color: rgb(84, 92, 100);*/
+        background-color: #373b48 !important;
+        color: #333;
+        /*text-align: center;*/
+        /*line-height: 200px;*/
+    }
 
-  .el-main {
-    /*background-color: #E9EEF3;*/
-    /*color: #333;*/
-    /*text-align: center;*/
-    /*line-height: 160px;*/
-  }
+    .el-main {
+        /*background-color: #E9EEF3;*/
+        /*color: #333;*/
+        /*text-align: center;*/
+        /*line-height: 160px;*/
+    }
 
-  body > .el-container {
-    /*margin-bottom: 40px;*/
-  }
+    body > .el-container {
+        /*margin-bottom: 40px;*/
+    }
 
-  /*.el-container:nth-child(5) .el-aside,*/
-  /*.el-container:nth-child(6) .el-aside {*/
+    /*.el-container:nth-child(5) .el-aside,*/
+    /*.el-container:nth-child(6) .el-aside {*/
     /*line-height: 260px;*/
-  /*}*/
+    /*}*/
 
-  /*.el-container:nth-child(7) .el-aside {*/
+    /*.el-container:nth-child(7) .el-aside {*/
     /*line-height: 320px;*/
-  /*}*/
+    /*}*/
 
-  /*头部下拉框浮在最右*/
-  .el-dropdown{
-    float: right;
-  }
+    /*头部下拉框浮在最右*/
+    .el-dropdown{
+        float: right;
+    }
 
-  .el-dropdown-link {
-    cursor: pointer;
-    /*color: #409EFF;*/
-  }
-  .el-icon-arrow-down {
-    /*font-size: 12px;*/
-  }
+    .el-dropdown-link {
+        cursor: pointer;
+        /*color: #409EFF;*/
+    }
+    .el-icon-arrow-down {
+        /*font-size: 12px;*/
+    }
+
+    /*点击导航栏*/
+    .el-menu-item.is-active {
+        border-left:3px solid #409EFF;
+        background-color: rgb(46,49,58)!important;
+    }
 </style>
