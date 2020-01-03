@@ -168,7 +168,12 @@
                             if (tab.name === targetName) {
                                 let nextTab = tabs[index + 1] || tabs[index - 1];
                                 if (nextTab) {
+                                    this.$router.push({
+                                        path:nextTab.name
+                                    })
                                     activeName = nextTab.name;
+                                }else {
+                                    alert(1)
                                 }
                             }
                         });
