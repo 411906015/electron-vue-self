@@ -73,8 +73,8 @@
                         <!--<el-tab-pane :label="item.label" :name="item.name" v-for="item in data"></el-tab-pane>-->
                     <!--</el-tabs>-->
 
-
                     <el-tabs v-model="editableTabsValue" type="card" closable  @edit="handleTabsEdit" @tab-click="handleClick">
+                        <el-tab-pane label="首页" closable name="dashboard"></el-tab-pane>
                         <el-tab-pane
                                 :key="item.name"
                                 v-for="item in editableTabs"

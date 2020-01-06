@@ -8,6 +8,15 @@
     // import test1 from './components/testPage/test1'
     export default {
         name: 'electron-vue-self',
+        beforeCreate:function(){
+            var loginToken = window.localStorage.getItem('loginToken');
+            if (loginToken==''){
+                this.router.push({
+                    path:'test1'
+                })
+            }
+            window.localStorage.setItem('asd','fuck');
+        },
         components:{
             // test1
         }
