@@ -10,10 +10,11 @@
         name: 'electron-vue-self',
         beforeCreate:function(){
             var loginToken = window.localStorage.getItem('loginToken');
-            if (loginToken==''){
-                this.router.push({
-                    path:'test1'
-                })
+            console.log(loginToken)
+            if (loginToken==null){
+                alert(1)
+            }else {
+                alert(2)
             }
             window.localStorage.setItem('asd','fuck');
         },
