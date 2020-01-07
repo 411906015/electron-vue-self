@@ -6,15 +6,21 @@
 
 <script>
     // import test1 from './components/testPage/test1'
+    import baseUrl from './config/baseUrl'
     export default {
         name: 'electron-vue-self',
         beforeCreate:function(){
-            var loginToken = window.localStorage.getItem('loginToken');
-            console.log(loginToken)
-            if (loginToken==null){
-                alert(1)
+            var token = window.localStorage.getItem('token');
+            if (token==null){
+                baseUrl.get('http://www.mylvadmin.com/electronApi/user/login')
+                // this.$router.push({
+                //     path:'login'
+                // })
             }else {
-                alert(2)
+                this.$router.push({
+                    path:'test1'
+                })
+                // alert(2)
             }
             window.localStorage.setItem('asd','fuck');
         },
