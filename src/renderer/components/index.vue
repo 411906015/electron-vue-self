@@ -94,7 +94,7 @@
 </template>
 
 <script>
-    import axios from 'axios'
+    import {elenoteGet} from '../config/elenoteHttp'
     export default {
         data() {
             return {
@@ -126,14 +126,7 @@
         methods:{
             searchFc(){
                 alert(1)
-                axios.get('http://www.mylvadmin.com/electronApi/user/login').then(function(response) {
-                    // handle success
-                    // this.search_value='阿萨德';
-                    console.log(response.data);
-                }).catch(function(error) {
-                    // handle error
-                    console.log(error);
-                })
+                elenoteGet('/myProject/list')
             },
             handleClick(e){
                 // console.log(e.name)
