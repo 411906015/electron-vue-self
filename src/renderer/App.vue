@@ -11,22 +11,9 @@
         name: 'electron-vue-self',
         beforeCreate:function(){
             let token = window.localStorage.getItem('token');
-            if (token==null){
-                elenoteGet('/myProject/list',{sd:"asdsfsdf"})
-                // get('http://www.mylvadmin.com/electronApi/user/login?asd=1').then(res=>{
-                //     console.log(res.data)
-                // })
-                // this.$router.push({
-                //     path:'login'
-                // })
-            }else {
-                // this.$router.push({
-                //     path:'test1'
-                // })
-                elenoteGet('/myProject/list',{sd:"asdsfsdf"})
-                // alert(2)
-            }
-            window.localStorage.setItem('asd','fuck');
+            elenoteGet('/user/checkLogin',{token:token}).then(res=>{
+                console.log(res)
+            })
         },
         components:{
             // test1

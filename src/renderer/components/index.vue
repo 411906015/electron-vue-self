@@ -95,6 +95,7 @@
 
 <script>
     import {elenoteGet} from '../config/elenoteHttp'
+    import {Message} from 'element-ui'
     export default {
         data() {
             return {
@@ -126,7 +127,9 @@
         methods:{
             searchFc(){
                 alert(1)
-                elenoteGet('/myProject/list')
+                elenoteGet('/user/checkLogin').then(res => {
+                    console.log(res)
+                })
             },
             handleClick(e){
                 // console.log(e.name)
