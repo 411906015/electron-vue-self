@@ -18,7 +18,7 @@ axios.interceptors.response.use(function (response) {
     return Promise.reject(error);
 });
 
-
+//获取用户信息
 export function elenoteGetUserInfo(url,params={}){
     return new Promise((resolve, reject) =>{
         url = baseUrl.apiUrl+'/user/checkLogin';

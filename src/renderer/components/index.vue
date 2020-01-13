@@ -2,9 +2,19 @@
     <el-container>
         <el-header>
             <span style="color: white;font-size: 18px">
-                <a href="/" style=";text-decoration:none; color:white;">TESTER & CODER</a>
+                <a href="/" style="text-decoration:none; color:white;">TESTER & CODER</a>
             </span>
-            <dropdown></dropdown>
+            <el-dropdown trigger="click">
+                <span class="el-dropdown-link" style="color: white;">
+                    SYSTEM<i class="el-icon-arrow-down el-icon--right"></i>
+                </span>
+                <el-dropdown-menu slot="dropdown">
+                    <el-dropdown-item @click.native="addTabs('editSelf','个人信息')">
+                        <router-link to="/editSelf" style="text-decoration:none;color: #606266">个人信息</router-link>
+                    </el-dropdown-item>
+                    <el-dropdown-item click>退出</el-dropdown-item>
+                </el-dropdown-menu>
+            </el-dropdown>
         </el-header>
 
         <el-container>
@@ -88,21 +98,13 @@
 <script>
     import {elenoteGet} from '../config/elenoteHttp'
     import {Message} from 'element-ui'
-    import dropdown from './Setting/dropdown'
+    import editSelf from './Setting/editSelf'
     export default {
         data() {
             return {
                 info:"fuck",
                 search_value: '',
                 counter:0,
-                // data:[
-                //     {
-                //         name:'/',label:'首页'
-                //     },
-                //     {
-                //         name:'/test2',label:'首页2'
-                //     }
-                // ],
                 //动态tabs
                 editableTabsValue: '2',
                 editableTabs: [{
@@ -114,32 +116,31 @@
                     name: 'test2',
                     content: 'Tab 2 content'
                 }],
-                // tabIndex: 2
+                tabIndex: 2
             }
         },
         components:{
-            dropdown
+            editSelf
         },
         methods:{
             searchFc(){
                 alert(1)
-                elenoteGet('/user/checkLogin').then(res => {
-                    console.log(res)
-                })
             },
             handleClick(e){
-                // console.log(e.name)
-                // this.data.push({
-                //     name:'5555',label:'666'
-                // })
-                // this.editableTabs.push({
-                //     name:'test2',title:'666'
-                // })
-
                 //切换路由
                 this.$router.push({
                     path:e.name
                 })
+            },
+            //点击增加tabs 如果tabs存在则跳转显示
+            addTabs(url,title){
+
+                let newTabName = ++this.tabIndex + '';
+                this.editableTabs.push({
+                    title: title,
+                    name: url,
+                });
+                this.editableTabsValue = newTabName;
             },
             //动态tabs
             handleTabsEdit(targetName, action) {
@@ -178,7 +179,6 @@
         }
     }
 
-    // axios.get('http://www.mylvadmin.com/electronApi/user/login')
 </script>
 
 <style scoped>

@@ -22,11 +22,20 @@
 </template>
 
 <script>
-    import {elenotePost} from '../../config/elenoteHttp'
+    import {elenotePost,elenoteGetUserInfo} from '../../config/elenoteHttp'
     import {Message} from 'element-ui'
     console.log(JSON.parse(localStorage.getItem('local_uer')))
     export default {
         name: 'login',
+        beforeCreate:function(){
+            elenoteGetUserInfo().then(res=>{
+                if (!res.code){
+                    this.$router.push({
+                        path:'/'
+                    })
+                }
+            })
+        },
         data() {
             return {
                 loginForm: {

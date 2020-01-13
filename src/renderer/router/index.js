@@ -10,20 +10,21 @@ export default new Router({
             name: 'index',
             component: require('@/components/index').default,
             redirect:'/dashboard',
+            // children 里的组件会被渲染在 父级 的 <router-view> 中
             children: [
                 {
                     path: '/dashboard',
                     component:  require('@/components/dashboard').default
                 },
                 {
-                    // 当 /user/:id/profile 匹配成功，
-                    // UserProfile 会被渲染在 User 的 <router-view> 中
+                    path: '/editSelf',
+                    component:  require('@/components/Setting/editSelf').default
+                },
+                {
                     path: '/test1',
                     component:  require('@/components/testPage/test1').default
                 },
                 {
-                    // 当 /user/:id/profile 匹配成功，
-                    // UserProfile 会被渲染在 User 的 <router-view> 中
                     path: '/test2',
                     component:  require('@/components/testPage/test2').default
                 }
