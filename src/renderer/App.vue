@@ -6,13 +6,19 @@
 
 <script>
     // import test1 from './components/testPage/test1'
-    import {elenoteGet} from './config/elenoteHttp'
+    import {Loading} from 'element-ui'
+    import {elenoteGetUserInfo} from './config/elenoteHttp'
+    let loadingInstance = Loading.service();
     export default {
         name: 'electron-vue-self',
         beforeCreate:function(){
-            let token = window.localStorage.getItem('token');
-            elenoteGet('/user/checkLogin',{token:token}).then(res=>{
-                console.log(res)
+            elenoteGetUserInfo().then(res=>{
+                loadingInstance.close()
+                if (res.code){
+                    this.$router.push({
+                        path:'/login'
+                    })
+                }
             })
         },
         components:{

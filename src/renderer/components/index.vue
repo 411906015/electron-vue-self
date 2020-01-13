@@ -4,15 +4,7 @@
             <span style="color: white;font-size: 18px">
                 <a href="/" style=";text-decoration:none; color:white;">TESTER & CODER</a>
             </span>
-            <el-dropdown trigger="click">
-                <span class="el-dropdown-link" style="color: white;">
-                    SYSTEM<i class="el-icon-arrow-down el-icon--right"></i>
-                </span>
-                <el-dropdown-menu slot="dropdown">
-                    <el-dropdown-item >个人信息</el-dropdown-item>
-                    <el-dropdown-item >退出</el-dropdown-item>
-                </el-dropdown-menu>
-            </el-dropdown>
+            <dropdown></dropdown>
         </el-header>
 
         <el-container>
@@ -96,6 +88,7 @@
 <script>
     import {elenoteGet} from '../config/elenoteHttp'
     import {Message} from 'element-ui'
+    import dropdown from './Setting/dropdown'
     export default {
         data() {
             return {
@@ -123,6 +116,9 @@
                 }],
                 // tabIndex: 2
             }
+        },
+        components:{
+            dropdown
         },
         methods:{
             searchFc(){

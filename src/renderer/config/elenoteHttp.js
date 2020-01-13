@@ -18,10 +18,27 @@ axios.interceptors.response.use(function (response) {
     return Promise.reject(error);
 });
 
+
+export function elenoteGetUserInfo(url,params={}){
+    return new Promise((resolve, reject) =>{
+        url = baseUrl.apiUrl+'/user/checkLogin';
+        params.elenote_id = localStorage.getItem('elenote_id');
+        axios.get(url, {
+            params: params
+        })
+            .then(res => {
+                resolve(res);
+            })
+            .catch(err => {
+                reject(err)
+            })
+    });
+}
+
 export function elenoteGet(url, params={}){
     return new Promise((resolve, reject) =>{
         url = baseUrl.apiUrl+url;
-        params.token = window.localStorage.getItem('token')
+        params.elenote_id = localStorage.getItem('elenote_id');
         axios.get(url, {
             params: params
         })
@@ -36,14 +53,13 @@ export function elenoteGet(url, params={}){
 
 export function elenotePost(url, params) {
     return new Promise((resolve, reject) => {
-        url = baseUrl.apiUrl+url+'?token=' + window.localStorage.getItem('token');
-        // params.token = window.localStorage.getItem('token')
+        url = baseUrl.apiUrl+url+'?elenote_id=' + localStorage.getItem('elenote_id');
         axios.post(url, QS.stringify(params))
             .then(res => {
-                resolve(res.data);
+                resolve(res);
             })
             .catch(err =>{
-                reject(err.data)
+                reject(err)
             })
     });
 }

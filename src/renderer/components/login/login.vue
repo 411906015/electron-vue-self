@@ -1,64 +1,67 @@
 <template>
     <div class="login-container">
         <el-form class="login-form" autoComplete="on" :model="loginForm" :rules="loginRules" ref="loginForm" label-position="left">
-            <h3 class="title">vue-element-admin</h3>
-            <el-form-item prop="username">
-                <el-input name="username" type="text" v-model="loginForm.username" autoComplete="on" placeholder="username" />
+            <h3 class="title">elenote-login</h3>
+
+            <el-form-item prop="mobile">
+                <el-input name="mobile" type="text" @keyup.enter.native="handleLogin" v-model="loginForm.mobile" autoComplete="on" placeholder="mobile" />
             </el-form-item>
+
             <el-form-item prop="password">
-                <el-input name="password" :type="pwdType" @keyup.enter.native="handleLogin" v-model="loginForm.password" autoComplete="on"
-                          placeholder="password"></el-input>
+                <el-input name="password" :type="pwdType" @keyup.enter.native="handleLogin" v-model="loginForm.password" autoComplete="on" placeholder="password"></el-input>
             </el-form-item>
+
             <el-form-item>
                 <el-button type="primary" style="width:100%;" :loading="loading" @click.native.prevent="handleLogin">
                     Sign in
                 </el-button>
             </el-form-item>
-            <div class="tips">
-                <span style="margin-right:20px;">username: admin</span>
-                <span> password: admin</span>
-            </div>
+
         </el-form>
     </div>
 </template>
 
 <script>
+    import {elenotePost} from '../../config/elenoteHttp'
+    import {Message} from 'element-ui'
+    console.log(JSON.parse(localStorage.getItem('local_uer')))
     export default {
         name: 'login',
         data() {
             return {
                 loginForm: {
-                    username: 'admin',
-                    password: 'admin'
+
                 },
                 loginRules: {
-                    username: [{ required: true, trigger: 'blur'}],
-                    password: [{ required: true, trigger: 'blur'}]
+                    mobile: [{ required: true, trigger: 'blur'}],
+                    password: [{ required: true, trigger: 'blur',min:6}]
                 },
                 loading: false,
                 pwdType: 'password'
             }
         },
         methods: {
-            showPwd() {
-                if (this.pwdType === 'password') {
-                    this.pwdType = ''
-                } else {
-                    this.pwdType = 'password'
-                }
-            },
             handleLogin() {
                 this.$refs.loginForm.validate(valid => {
                     if (valid) {
                         this.loading = true
-                        this.$store.dispatch('Login', this.loginForm).then(() => {
-                            this.loading = false
-                            this.$router.push({ path: '/' })
-                        }).catch(() => {
-                            this.loading = false
+                        elenotePost('/user/login',this.loginForm).then(res=>{
+                            if (res.code){
+                                Message.error(res.msg)
+                                this.loading = false
+                                return false
+                            }else {
+
+                                localStorage.setItem('elenote_id',res.data.elenote_id);
+                                localStorage.setItem('local_uer',JSON.stringify(res.data.user));
+
+                                this.$router.push({
+                                    path:'/'
+                                })
+                            }
                         })
                     } else {
-                        console.log('error submit!!')
+                        Message.error('ERROR')
                         return false
                     }
                 })
