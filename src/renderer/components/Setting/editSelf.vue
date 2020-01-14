@@ -49,6 +49,7 @@
 
 <script>
     export default {
+        name:'editSelf',
         data() {
             return {
                 form: {
@@ -62,6 +63,12 @@
                     desc: ''
                 }
             }
+        },
+        // created:function () {
+        //     alert(1123)
+        // },
+        activated:function () {
+            console.log('组件被选中')
         },
         methods: {
             onSubmit() {

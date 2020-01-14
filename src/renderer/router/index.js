@@ -3,6 +3,12 @@ import Router from 'vue-router'
 
 Vue.use(Router)
 
+//解决重复点击路由报错
+const originalPush = Router.prototype.push
+Router.prototype.push = function push(location) {
+    return originalPush.call(this, location).catch(err => err)
+}
+
 export default new Router({
     routes: [
         {
@@ -14,35 +20,32 @@ export default new Router({
             children: [
                 {
                     path: '/dashboard',
+                    name:'dashboard',
                     component:  require('@/components/dashboard').default
                 },
                 {
                     path: '/editSelf',
+                    name: 'editSelf',
+                    meta:{
+                        keepAlive:true
+                    },
                     component:  require('@/components/Setting/editSelf').default
                 },
                 {
-                    path: '/test1',
+                    path: '/test1/:id',
+                    name: 'test1',
                     component:  require('@/components/testPage/test1').default
                 },
                 {
                     path: '/test2',
+                    name: 'test2',
                     component:  require('@/components/testPage/test2').default
                 }
             ]
         },
         {
-            path: '/mine',
-            name: 'mine',
-            component: require('@/components/testPage/test2').default
-        },
-        {
             path: '/login',
             name: 'login',
-            component: require('@/components/login/login').default
-        },
-        {
-            path: '/first',
-            name: 'first',
             component: require('@/components/login/login').default
         },
         {

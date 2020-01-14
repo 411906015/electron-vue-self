@@ -26,6 +26,9 @@
                         <el-input placeholder="请输入内容" v-model="search_value" class="input-with-select">
                             <el-button slot="append" icon="el-icon-search" v-on:click="searchFc"></el-button>
                         </el-input>
+                        <el-input placeholder="请输入内容2" v-model="search_value" class="input-with-select">
+                            <el-button slot="append" icon="el-icon-search" v-on:click="searchFc1"></el-button>
+                        </el-input>
                         <el-menu-item index="search-1">搜索结果1</el-menu-item>
                     </div>
                     <el-submenu index="1" >
@@ -33,8 +36,8 @@
                             <i class="el-icon-star-on"></i>
                             <span>标记</span>
                         </template>
-                        <el-menu-item index="/test1">我的</el-menu-item>
-                        <el-menu-item index="/test2">我的2</el-menu-item>
+                        <el-menu-item index="test1/1">我的</el-menu-item>
+                        <el-menu-item index="test2">我的2</el-menu-item>
                     </el-submenu>
 
 
@@ -71,22 +74,24 @@
             <el-container>
 
                 <el-main style="padding: 0px">
-                    <!--<el-tabs  @tab-click="handleClick">-->
-                        <!--<el-tab-pane :label="item.label" :name="item.name" v-for="item in data"></el-tab-pane>-->
-                    <!--</el-tabs>-->
 
                     <el-tabs v-model="editableTabsValue" type="card" closable  @edit="handleTabsEdit" @tab-click="handleClick">
-                        <el-tab-pane label="首页" closable name="dashboard"></el-tab-pane>
                         <el-tab-pane
                                 :key="item.name"
                                 v-for="item in editableTabs"
                                 :label="item.title"
+                                :closable="item.close"
                                 :name="item.name">
                         </el-tab-pane>
                     </el-tabs>
+                    <keep-alive :include="cachePage">
+                        <router-view></router-view>
+                    </keep-alive>
 
-
-                    <router-view></router-view>
+                    <!--<keep-alive>-->
+                        <!--<router-view v-if="$route.meta.keepAlive"></router-view>-->
+                    <!--</keep-alive>-->
+                    <!--<router-view v-if="!$route.meta.keepAlive"></router-view>-->
                 </el-main>
                 <!--<el-footer>Footer</el-footer>-->
             </el-container>
@@ -106,17 +111,18 @@
                 search_value: '',
                 counter:0,
                 //动态tabs
-                editableTabsValue: '2',
-                editableTabs: [{
-                    title: 'Tab 1',
-                    name: 'test1',
-                    content: 'Tab 1 content'
-                }, {
-                    title: 'Tab 2',
-                    name: 'test2',
-                    content: 'Tab 2 content'
-                }],
-                tabIndex: 2
+                editableTabsValue: 'dashboard',
+                editableTabs: [
+                    {
+                        title: '首页',
+                        name: 'dashboard',
+                        close:'closable'
+                    }
+                ],
+                tabIndex: 1,
+
+                //路由页面缓存
+                cachePage:"editSelf",
             }
         },
         components:{
@@ -124,7 +130,12 @@
         },
         methods:{
             searchFc(){
-                alert(1)
+                alert('清除缓存')
+                this.cachePage=''
+            },
+            searchFc1(){
+                alert('增加缓存')
+                this.cachePage='editSelf'
             },
             handleClick(e){
                 //切换路由
@@ -134,13 +145,26 @@
             },
             //点击增加tabs 如果tabs存在则跳转显示
             addTabs(url,title){
-
-                let newTabName = ++this.tabIndex + '';
-                this.editableTabs.push({
-                    title: title,
-                    name: url,
+                let tabs = this.editableTabs;
+                let add = true;
+                //是否存在当前路由
+                tabs.forEach((tab, index) => {
+                    if (tab.name===url){
+                        add = false;
+                    }
                 });
-                this.editableTabsValue = newTabName;
+                this.$router.push({
+                    path:url
+                })
+                if (add){
+                    this.editableTabs.push({
+                        title: title,
+                        name: url,
+                    });
+                    this.editableTabsValue = url;
+                }else {
+                    this.editableTabsValue = url;
+                }
             },
             //动态tabs
             handleTabsEdit(targetName, action) {
@@ -154,8 +178,14 @@
                     this.editableTabsValue = newTabName;
                 }
                 if (action === 'remove') {
+
                     let tabs = this.editableTabs;
                     let activeName = this.editableTabsValue;
+
+                    //不关闭首页
+                    if (targetName === 'dashboard'){
+                        return false;
+                    }
                     if (activeName === targetName) {
                         tabs.forEach((tab, index) => {
                             if (tab.name === targetName) {
