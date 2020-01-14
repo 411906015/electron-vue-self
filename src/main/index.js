@@ -1,5 +1,6 @@
 import { app, BrowserWindow } from 'electron'
-
+//解决store/index.js 多进程通信 createSharedMutations 导致的问题
+import '../renderer/store'
 /**
  * Set `__static` path to static files in production
  * https://simulatedgreg.gitbooks.io/electron-vue/content/en/using-static-assets.html

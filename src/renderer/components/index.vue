@@ -130,12 +130,14 @@
         },
         methods:{
             searchFc(){
-                alert('清除缓存')
-                this.cachePage=''
+                console.log(this.$store.state.Counter.main)
+                // alert('清除缓存')
+                // this.cachePage=''
             },
             searchFc1(){
-                alert('增加缓存')
-                this.cachePage='editSelf'
+                this.$store.dispatch('someAsyncTask')
+                // alert('增加缓存')
+                // this.cachePage='editSelf'
             },
             handleClick(e){
                 //切换路由
