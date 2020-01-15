@@ -1,18 +1,20 @@
 const state = {
-  bucketId: '123'    // 默认值
-}
-
-const getters = {
-  bucketId: state=> state.bucketId
+    main: [
+        'editSelf'
+    ],
 }
 
 const mutations = {
-  updateBucketId(state, bucketId) {
-    state.bucketId = bucketId
-  }
+    DECREMENT_MAIN_COUNTER (state,str) {
+        state.main = state.main+','
+    },
+    // INCREMENT_MAIN_COUNTER (state) {
+    //     state.main++
+    // }
 }
 
+
 export default {
-  state,
-  mutations
+    state,
+    mutations
 }

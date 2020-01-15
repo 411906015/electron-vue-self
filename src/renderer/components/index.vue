@@ -6,7 +6,7 @@
             </span>
             <el-dropdown trigger="click">
                 <span class="el-dropdown-link" style="color: white;">
-                    SYSTEM<i class="el-icon-arrow-down el-icon--right"></i>
+                    {{user_name}}<i class="el-icon-arrow-down el-icon--right"></i>
                 </span>
                 <el-dropdown-menu slot="dropdown">
                     <el-dropdown-item @click.native="addTabs('editSelf','个人信息')">
@@ -26,9 +26,7 @@
                         <el-input placeholder="请输入内容" v-model="search_value" class="input-with-select">
                             <el-button slot="append" icon="el-icon-search" v-on:click="searchFc"></el-button>
                         </el-input>
-                        <el-input placeholder="请输入内容2" v-model="search_value" class="input-with-select">
-                            <el-button slot="append" icon="el-icon-search" v-on:click="searchFc1"></el-button>
-                        </el-input>
+
                         <el-menu-item index="search-1">搜索结果1</el-menu-item>
                     </div>
                     <el-submenu index="1" >
@@ -36,8 +34,8 @@
                             <i class="el-icon-star-on"></i>
                             <span>标记</span>
                         </template>
-                        <el-menu-item index="test1/1">我的</el-menu-item>
-                        <el-menu-item index="test2">我的2</el-menu-item>
+                        <el-menu-item index="/test1/1">我的</el-menu-item>
+                        <el-menu-item index="/test2">我的2</el-menu-item>
                     </el-submenu>
 
 
@@ -110,19 +108,20 @@
                 info:"fuck",
                 search_value: '',
                 counter:0,
+                user_name:JSON.parse(localStorage.getItem('local_uer')).real_name,
                 //动态tabs
-                editableTabsValue: 'dashboard',
+                editableTabsValue: '/dashboard',
                 editableTabs: [
                     {
                         title: '首页',
-                        name: 'dashboard',
+                        name: '/dashboard',
                         close:'closable'
                     }
                 ],
                 tabIndex: 1,
 
-                //路由页面缓存
-                cachePage:"editSelf",
+                //路由页面缓存 绑定全局变量
+                cachePage:this.$store.state.tester.main,
             }
         },
         components:{
@@ -130,14 +129,7 @@
         },
         methods:{
             searchFc(){
-                console.log(this.$store.state.Counter.main)
-                // alert('清除缓存')
-                // this.cachePage=''
-            },
-            searchFc1(){
-                this.$store.dispatch('someAsyncTask')
-                // alert('增加缓存')
-                // this.cachePage='editSelf'
+                alert(1)
             },
             handleClick(e){
                 //切换路由
@@ -185,7 +177,7 @@
                     let activeName = this.editableTabsValue;
 
                     //不关闭首页
-                    if (targetName === 'dashboard'){
+                    if (targetName === '/dashboard'){
                         return false;
                     }
                     if (activeName === targetName) {
