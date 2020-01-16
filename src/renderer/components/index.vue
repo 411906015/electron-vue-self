@@ -108,7 +108,7 @@
                 info:"fuck",
                 search_value: '',
                 counter:0,
-                user_name:JSON.parse(localStorage.getItem('local_uer')).real_name,
+                user_name:'',
                 //动态tabs
                 editableTabsValue: '/dashboard',
                 editableTabs: [
@@ -123,6 +123,16 @@
                 //路由页面缓存 绑定全局变量
                 cachePage:this.$store.state.tester.main,
             }
+        },
+        created:function () {
+            console.log('created 执行')
+            let userData = JSON.parse(localStorage.getItem('local_uer'));
+            this.user_name = userData.real_name
+        },
+        updated:function () {
+            console.log('updated 执行')
+            let userData = JSON.parse(localStorage.getItem('local_uer'));
+            this.user_name = userData.real_name
         },
         components:{
             editSelf

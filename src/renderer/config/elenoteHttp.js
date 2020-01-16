@@ -51,7 +51,7 @@ export function elenoteGet(url, params={}){
     });
 }
 
-export function elenotePost(url, params) {
+export function elenotePost(url, params={}) {
     return new Promise((resolve, reject) => {
         url = baseUrl.apiUrl+url+'?elenote_id=' + localStorage.getItem('elenote_id');
         axios.post(url, QS.stringify(params))
