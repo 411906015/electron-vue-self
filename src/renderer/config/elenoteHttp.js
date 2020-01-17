@@ -1,13 +1,42 @@
 import axios from 'axios'
 import baseUrl from './baseUrl'
 import QS from 'qs'
-import {Message} from "element-ui";
-
+import {Message,MessageBox} from "element-ui";
+import router from '../router/index.js'
 axios.defaults.timeout = 10000;
 
 //----------------- 二、响应拦截器 忽略
 axios.interceptors.response.use(function (response) {
     if(response.status==200){
+        if (response.data.code === 20001){
+            MessageBox.confirm('登录信息错误，请重新登录', {
+                confirmButtonText: '确定',
+                cancelButtonText: '取消',
+                type: 'warning',
+                center: true
+            }).then(() => {
+                // this.elenoteGet('/user/exitLogin').then(res=>{
+                //     localStorage.removeItem('elenote_id');
+                //     localStorage.removeItem('local_user');
+                //
+                // })
+                // router.push({
+                //     path:'/login'
+                // })
+                // Message({
+                //     type: 'success',
+                //     message: '退出登录'
+                // });
+                // this.$router.push({
+                //     path:'/login'
+                // })
+            }).catch(() => {
+                // this.$message({
+                //     type: 'info',
+                //     message: '已取消删除'
+                // });
+            });
+        }
         return response.data;
     }else{
         //...

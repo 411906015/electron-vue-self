@@ -24,7 +24,7 @@
 <script>
     import {elenotePost,elenoteGetUserInfo} from '../../config/elenoteHttp'
     import {Message} from 'element-ui'
-    console.log(JSON.parse(localStorage.getItem('local_uer')))
+    console.log(JSON.parse(localStorage.getItem('local_user')))
     export default {
         name: 'login',
         beforeCreate:function(){
@@ -62,7 +62,7 @@
                             }else {
 
                                 localStorage.setItem('elenote_id',res.data.elenote_id);
-                                localStorage.setItem('local_uer',JSON.stringify(res.data.user));
+                                localStorage.setItem('local_user',JSON.stringify(res.data.user));
 
                                 this.$router.push({
                                     path:'/'

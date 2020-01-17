@@ -9,20 +9,22 @@
                 <el-tab-pane label="基本资料" name="1">
 
                     <el-form ref="form" :model="form" label-width="80px">
-                        <el-form-item label="名称">
-                            <el-input v-model="form.name"></el-input>
+                        <el-form-item label="昵称">
+                            <el-input v-model="form.name" placeholder="默认手机号" autocomplete="on"></el-input>
                         </el-form-item>
-
+                        <el-form-item label="真实姓名">
+                            <el-input v-model="form.realName" placeholder="默认手机号"></el-input>
+                        </el-form-item>
                         <el-form-item label="email">
-                            <el-input v-model="form.email"></el-input>
+                            <el-input v-model="form.email" placeholder="默认手机号"></el-input>
                         </el-form-item>
 
                         <el-form-item label="备注">
-                            <el-input type="textarea" v-model="form.desc" style="width: 400px"></el-input>
+                            <el-input type="textarea" v-model="form.remark" style="width: 400px"></el-input>
                         </el-form-item>
 
                         <el-form-item>
-                            <el-button type="primary" @click="onSubmit">确定</el-button>
+                            <el-button :loading="loadingBase" :disabled="disabledButtonBase" type="primary" @click="onSubmit">确定</el-button>
                             <!--<el-button>取消</el-button>-->
                         </el-form-item>
                     </el-form>
@@ -49,7 +51,7 @@
 
 <script>
     import {elenoteGetUserInfo,elenotePost} from '../../config/elenoteHttp'
-    import {Loading,Message} from 'element-ui'
+    import {Loading,Message,Notification} from 'element-ui'
     export default {
         name:'editSelf',
         data() {
@@ -76,16 +78,20 @@
             };
             return {
                 loading:false,
+                loadingBase:false,
                 activeName: '1',
                 form: {
                     name: '',
                     email:'',
+                    remark:'',
+                    realName:'',
                 },
                 ruleForm: {
                     pass: '',
                     checkPass: '',
                 },
                 disabledButton:false,
+                disabledButtonBase:false,
                 rules: {
                     pass: [
                         { validator: validatePass, trigger: 'blur' }
@@ -104,25 +110,44 @@
         //     alert(1123)
         // },
         activated:function () {
+            // Notification.success('进入 editSelf 路由')
             console.log('进入 editSelf 路由')
             // let loadingInstance = Loading.service();
+            this.ruleForm.pass = ''
+            this.ruleForm.checkPass = ''
             elenoteGetUserInfo().then(res=>{
-                if (res.code!=0){
+                if (res.code!==0){
                     Message.error(res.msg)
                     return false
                 }
-                localStorage.setItem('local_uer',JSON.stringify(res.data))
-                let userData=JSON.parse(localStorage.getItem('local_uer'))
-                this.form.name = userData.real_name
+                localStorage.setItem('local_user',JSON.stringify(res.data))
+                let userData=JSON.parse(localStorage.getItem('local_user'))
+                this.form.name = userData.nick_name
+                this.form.realName = userData.real_name
                 this.form.email = userData.email
+                this.form.remark = userData.remark
                 // loadingInstance.close()
             })
 
         },
         methods: {
+            //修改基本资料
             onSubmit() {
+                this.disabledButtonBase = true
+                this.loadingBase = true
                 console.log(JSON.stringify(this.form));
+                elenotePost('/user/edit-base',this.form).then(res=>{
+                    this.disabledButtonBase = false
+                    this.loadingBase = false
+                    if (res.code!==0){
+                        Message.error(res.msg)
+                        return false
+                    }
+                    Message.success(res.msg)
+                    console.log(res)
+                })
             },
+            //修改密码
             onSubmitPass(formName){
                 this.disabledButton = true
                 this.loading = true
@@ -132,6 +157,11 @@
                         elenotePost('/user/edit-password',this.ruleForm).then(res=>{
                             this.disabledButton = false
                             this.loading = false
+                            if (res.code){
+                                Message.error(res.msg)
+                                return false
+                            }
+                            Message.success(res.msg)
                             console.log(res)
                         })
 

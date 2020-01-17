@@ -9,16 +9,16 @@
                     {{user_name}}<i class="el-icon-arrow-down el-icon--right"></i>
                 </span>
                 <el-dropdown-menu slot="dropdown">
-                    <el-dropdown-item @click.native="addTabs('editSelf','个人信息')">
+                    <el-dropdown-item @click.native="addTabs('/editSelf','个人信息')">
                         <router-link to="/editSelf" style="text-decoration:none;color: #606266">个人信息</router-link>
                     </el-dropdown-item>
-                    <el-dropdown-item click>退出</el-dropdown-item>
+                    <el-dropdown-item @click.native="exitLogin">退出</el-dropdown-item>
                 </el-dropdown-menu>
             </el-dropdown>
         </el-header>
 
         <el-container>
-            <el-aside width="210px">
+            <el-aside width="300px">
                 <el-menu default-active="1" router class="el-menu-vertical-demo" background-color="#393D49" text-color="#fff"
                          :unique-opened = "true" active-text-color=""
                          :collapse-transition="true">
@@ -34,8 +34,8 @@
                             <i class="el-icon-star-on"></i>
                             <span>标记</span>
                         </template>
-                        <el-menu-item index="/test1/1">我的</el-menu-item>
-                        <el-menu-item index="/test2">我的2</el-menu-item>
+                        <el-menu-item index="/test1/1" @click="addTabs('/test1/1','我的')">我的</el-menu-item>
+                        <el-menu-item index="/test2" @click="addTabs('/test2','我的2')">我的2</el-menu-item>
                     </el-submenu>
 
 
@@ -126,13 +126,25 @@
         },
         created:function () {
             console.log('created 执行')
-            let userData = JSON.parse(localStorage.getItem('local_uer'));
-            this.user_name = userData.real_name
+            let userData = JSON.parse(localStorage.getItem('local_user'));
+            if (userData.nick_name){
+                this.user_name = userData.nick_name
+            }else if(userData.real_name){
+                this.user_name = userData.real_name
+            }else {
+                this.user_name = userData.mobile
+            }
         },
         updated:function () {
             console.log('updated 执行')
-            let userData = JSON.parse(localStorage.getItem('local_uer'));
-            this.user_name = userData.real_name
+            let userData = JSON.parse(localStorage.getItem('local_user'));
+            if (userData.nick_name){
+                this.user_name = userData.nick_name
+            }else if(userData.real_name){
+                this.user_name = userData.real_name
+            }else {
+                this.user_name = userData.mobile
+            }
         },
         components:{
             editSelf
@@ -169,6 +181,34 @@
                 }else {
                     this.editableTabsValue = url;
                 }
+            },
+            exitLogin(){
+                // let userData = JSON.parse(localStorage.getItem('local_user'));
+                this.$confirm('退出登录？', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning',
+                    center: true
+                }).then(() => {
+                    elenoteGet('/user/exitLogin').then(res=>{
+                        localStorage.removeItem('elenote_id');
+                        localStorage.removeItem('local_user');
+                        this.$message({
+                            type: 'success',
+                            message: '退出登录'
+                        });
+                        this.$router.push({
+                            path:'/login'
+                        })
+                    })
+
+                }).catch(() => {
+                    // this.$message({
+                    //     type: 'info',
+                    //     message: '已取消删除'
+                    // });
+                });
+
             },
             //动态tabs
             handleTabsEdit(targetName, action) {
