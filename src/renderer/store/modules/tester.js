@@ -1,6 +1,6 @@
 const state = {
     main: [
-        'editSelf'
+        '/editSelf',
     ],
 }
 

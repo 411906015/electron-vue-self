@@ -18,59 +18,100 @@
         </el-header>
 
         <el-container>
-            <el-aside width="300px">
-                <el-menu default-active="1" router class="el-menu-vertical-demo" background-color="#393D49" text-color="#fff"
-                         :unique-opened = "true" active-text-color=""
-                         :collapse-transition="true">
-                    <div >
-                        <el-input placeholder="请输入内容" v-model="search_value" class="input-with-select">
-                            <el-button slot="append" icon="el-icon-search" v-on:click="searchFc"></el-button>
-                        </el-input>
+            <el-scrollbar class="asideScrollbar">
+                <el-aside>
+                    <el-menu default-active="1" router class="el-menu-vertical-demo" background-color="#393D49" text-color="#fff"
+                             :unique-opened = "true" active-text-color=""
+                             :collapse-transition="true">
+                        <div>
+                            <el-input placeholder="请输入内容" v-model="search_value" class="input-with-select">
+                                <el-button slot="append" icon="el-icon-search" v-on:click="searchFc"></el-button>
+                            </el-input>
 
-                        <el-menu-item index="search-1">搜索结果1</el-menu-item>
-                    </div>
-                    <el-submenu index="1" >
-                        <template slot="title">
-                            <i class="el-icon-star-on"></i>
-                            <span>标记</span>
-                        </template>
-                        <el-menu-item index="/test1/1" @click="addTabs('/test1/1','我的')">我的</el-menu-item>
-                        <el-menu-item index="/test2" @click="addTabs('/test2','我的2')">我的2</el-menu-item>
-                    </el-submenu>
+                            <el-menu-item index="search-1">搜索结果1</el-menu-item>
+                        </div>
+                        <el-submenu index="1" >
+                            <template slot="title">
+                                <i class="el-icon-star-on"></i>
+                                <span>标记</span>
+                            </template>
+                            <el-menu-item index="/test1/1" @click="addTabs('/test1/1','我的')">我的</el-menu-item>
+                            <el-menu-item index="/test2" @click="addTabs('/test2','我的2')">我的2</el-menu-item>
+                        </el-submenu>
 
 
-                    <el-submenu index="2">
-                        <template slot="title">
-                            <i class="el-icon-user-solid"></i>
-                            <span>我的</span>
-                        </template>
-                        <el-menu-item index="2-1">选项1</el-menu-item>
-                        <el-menu-item index="2-2">选项2</el-menu-item>
-                    </el-submenu>
+                        <el-submenu index="2">
+                            <template slot="title">
+                                <i class="el-icon-user-solid"></i>
+                                <span>开发中</span>
+                            </template>
+                            <el-menu-item index="2-1">选项1</el-menu-item>
+                            <el-menu-item index="2-2">选项2</el-menu-item>
+                            <el-menu-item index="2-1">选项1</el-menu-item>
+                            <el-menu-item index="2-2">
+                                选项2选项2选项2选项2选项2选项2选项2选项2选项2选项2选项2选项2
+                            </el-menu-item>
+                            <el-menu-item index="2-1">选项1</el-menu-item>
+                            <el-menu-item index="2-2">选项2</el-menu-item>
+                            <el-menu-item index="2-1">选项1</el-menu-item>
+                            <el-menu-item index="2-2">选项2</el-menu-item>
+                            <el-menu-item index="2-1">选项1</el-menu-item>
+                            <el-menu-item index="2-2">选项2</el-menu-item>
+                            <el-menu-item index="2-1">选项1</el-menu-item>
+                            <el-menu-item index="2-2">选项2</el-menu-item>
+                            <el-menu-item index="2-1">选项1</el-menu-item>
+                            <el-menu-item index="2-2">选项2</el-menu-item>
+                            <el-menu-item index="2-1">选项1</el-menu-item>
+                            <el-menu-item index="2-2">选项2</el-menu-item>
+                            <el-menu-item index="2-1">选项1</el-menu-item>
+                            <el-menu-item index="2-2">选项2</el-menu-item>
+                            <el-menu-item index="2-1">选项1</el-menu-item>
+                            <el-menu-item index="2-2">选项2</el-menu-item>
+                            <el-menu-item index="2-1">选项1</el-menu-item>
+                            <el-menu-item index="2-2">选项2</el-menu-item>
+                            <el-menu-item index="2-1">选项1</el-menu-item>
+                            <el-menu-item index="2-2">选项2</el-menu-item>
+                            <el-menu-item index="2-1">选项1</el-menu-item>
+                            <el-menu-item index="2-2">选项2</el-menu-item>
+                            <el-menu-item index="2-1">选项1</el-menu-item>
+                            <el-menu-item index="2-2">选项2</el-menu-item>
+                            <el-menu-item index="2-1">选项1</el-menu-item>
+                            <el-menu-item index="2-2">选项2</el-menu-item>
+                        </el-submenu>
 
-                    <el-submenu index="3">
-                        <template slot="title">
-                            <i class="el-icon-folder-checked"></i>
-                            <span>已完结</span>
-                        </template>
-                        <el-menu-item index="3-1">选项1</el-menu-item>
-                        <el-menu-item index="3-2">选项2</el-menu-item>
-                    </el-submenu>
+                        <el-submenu index="3">
+                            <template slot="title">
+                                <i class="el-icon-folder-delete"></i>
+                                <span>测试中</span>
+                            </template>
+                            <el-menu-item index="3-1">选项1</el-menu-item>
+                            <el-menu-item index="3-2">选项2</el-menu-item>
+                        </el-submenu>
 
-                    <el-submenu index="4">
-                        <template slot="title">
-                            <i class="el-icon-folder-delete"></i>
-                            <span>忽略</span>
-                        </template>
-                        <el-menu-item index="4-1">选项1</el-menu-item>
-                        <el-menu-item index="4-2">选项2</el-menu-item>
+                        <el-submenu index="4">
+                            <template slot="title">
 
-                    </el-submenu>
-                </el-menu>
-            </el-aside>
+                                <i class="el-icon-folder-checked"></i>
+                                <span>待上线</span>
+                            </template>
+                            <el-menu-item index="4-1">选项1</el-menu-item>
+                            <el-menu-item index="4-2">选项2</el-menu-item>
+                        </el-submenu>
+
+                        <el-submenu index="5">
+                            <template slot="title">
+                                <i class="el-icon-lock"></i>
+                                <span>已上线</span>
+                            </template>
+                            <el-menu-item index="5-1">选项1</el-menu-item>
+                            <el-menu-item index="5-2">选项2</el-menu-item>
+                        </el-submenu>
+                    </el-menu>
+                </el-aside>
+            </el-scrollbar>
+
 
             <el-container>
-
                 <el-main style="padding: 0px">
 
                     <el-tabs v-model="editableTabsValue" type="card" closable  @edit="handleTabsEdit" @tab-click="handleClick">
@@ -87,7 +128,7 @@
                     </keep-alive>
 
                     <!--<keep-alive>-->
-                        <!--<router-view v-if="$route.meta.keepAlive"></router-view>-->
+                    <!--<router-view v-if="$route.meta.keepAlive"></router-view>-->
                     <!--</keep-alive>-->
                     <!--<router-view v-if="!$route.meta.keepAlive"></router-view>-->
                 </el-main>
@@ -271,10 +312,14 @@
         /*background-color: rgb(84, 92, 100);*/
         background-color: #373b48 !important;
         color: #333;
+        overflow: hidden;
         /*text-align: center;*/
         /*line-height: 200px;*/
     }
-
+    .asideScrollbar {
+        background-color: #373b48 !important;
+        color: #333;
+    }
     .el-main {
         /*background-color: #E9EEF3;*/
         /*color: #333;*/
@@ -313,4 +358,5 @@
         border-left:3px solid #409EFF;
         background-color: rgb(46,49,58)!important;
     }
+
 </style>

@@ -37,6 +37,7 @@
         margin: 0px;
         /*统一设置高度为100%*/
         height: 100%;
-        font-family: "Microsoft YaHei UI";
+        font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+        /*font-family: "Microsoft YaHei UI";*/
     }
 </style>
