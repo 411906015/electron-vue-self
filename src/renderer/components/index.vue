@@ -35,8 +35,8 @@
                                 <i class="el-icon-star-on"></i>
                                 <span>标记</span>
                             </template>
-                            <el-menu-item index="/test1/1" @click="addTabs('/test1/1','我的')">我的</el-menu-item>
-                            <el-menu-item index="/test2" @click="addTabs('/test2','我的2')">我的2</el-menu-item>
+                            <el-menu-item index="/test1/1" @click="addTabs('/test1/1','NOTE-009521：CPS导购业绩统计接口')">NOTE-009521：CPS导购业绩统计接口</el-menu-item>
+                            <el-menu-item index="/test2" @click="addTabs('/test2','NOTE-003518：线上商品详情页切换颜色，商品价格错误')">NOTE-003518：线上商品详情页切换颜色，商品价格错误</el-menu-item>
                         </el-submenu>
 
 
@@ -112,26 +112,28 @@
 
 
             <el-container>
-                <el-main style="padding: 0px">
+                <el-scrollbar style="width: 100%">
+                    <el-main style="padding: 0px">
+                        <el-tabs v-model="editableTabsValue" type="card" closable  @edit="handleTabsEdit" @tab-click="handleClick">
+                            <el-tab-pane
+                                    :key="item.name"
+                                    v-for="item in editableTabs"
+                                    :label="item.title"
+                                    :closable="item.close"
+                                    :name="item.name">
+                            </el-tab-pane>
+                        </el-tabs>
+                        <keep-alive :include="cachePage">
+                            <router-view></router-view>
+                        </keep-alive>
 
-                    <el-tabs v-model="editableTabsValue" type="card" closable  @edit="handleTabsEdit" @tab-click="handleClick">
-                        <el-tab-pane
-                                :key="item.name"
-                                v-for="item in editableTabs"
-                                :label="item.title"
-                                :closable="item.close"
-                                :name="item.name">
-                        </el-tab-pane>
-                    </el-tabs>
-                    <keep-alive :include="cachePage">
-                        <router-view></router-view>
-                    </keep-alive>
+                        <!--<keep-alive>-->
+                        <!--<router-view v-if="$route.meta.keepAlive"></router-view>-->
+                        <!--</keep-alive>-->
+                        <!--<router-view v-if="!$route.meta.keepAlive"></router-view>-->
+                    </el-main>
+                </el-scrollbar>
 
-                    <!--<keep-alive>-->
-                    <!--<router-view v-if="$route.meta.keepAlive"></router-view>-->
-                    <!--</keep-alive>-->
-                    <!--<router-view v-if="!$route.meta.keepAlive"></router-view>-->
-                </el-main>
                 <!--<el-footer>Footer</el-footer>-->
             </el-container>
 
@@ -295,9 +297,7 @@
     }
 
 </script>
-
 <style scoped>
-
     .el-header, .el-footer {
         /*background-color: #B3C0D1;*/
         color: #333;
@@ -307,38 +307,23 @@
         line-height: 60px;
     }
 
+    /*左侧导航条*/
     .el-aside {
-        /*background-color: #D3DCE6;*/
-        /*background-color: rgb(84, 92, 100);*/
         background-color: #373b48 !important;
         color: #333;
-        overflow: hidden;
+        overflow-x: hidden;
+        height: 100%;
         /*text-align: center;*/
         /*line-height: 200px;*/
+    }
+    .el-menu{
+        width: 301px;
     }
     .asideScrollbar {
         background-color: #373b48 !important;
         color: #333;
     }
-    .el-main {
-        /*background-color: #E9EEF3;*/
-        /*color: #333;*/
-        /*text-align: center;*/
-        /*line-height: 160px;*/
-    }
-
-    body > .el-container {
-        /*margin-bottom: 40px;*/
-    }
-
-    /*.el-container:nth-child(5) .el-aside,*/
-    /*.el-container:nth-child(6) .el-aside {*/
-    /*line-height: 260px;*/
-    /*}*/
-
-    /*.el-container:nth-child(7) .el-aside {*/
-    /*line-height: 320px;*/
-    /*}*/
+    /*END*/
 
     /*头部下拉框浮在最右*/
     .el-dropdown{
@@ -349,9 +334,6 @@
         cursor: pointer;
         /*color: #409EFF;*/
     }
-    .el-icon-arrow-down {
-        /*font-size: 12px;*/
-    }
 
     /*点击导航栏*/
     .el-menu-item.is-active {
@@ -359,4 +341,13 @@
         background-color: rgb(46,49,58)!important;
     }
 
+</style>
+<style>
+    /*左侧导航栏去掉横向滚动条*/
+    .el-scrollbar__wrap{
+        overflow-x: hidden !important;
+    }
+    .el-scrollbar__view{
+        /*height: 100% !important;*/
+    }
 </style>

@@ -22,6 +22,162 @@
                         <el-form-item label="备注">
                             <el-input type="textarea" v-model="form.remark" style="width: 400px"></el-input>
                         </el-form-item>
+                        <el-form-item label="昵称">
+                            <el-input v-model="form.name" placeholder="默认手机号" autocomplete="on"></el-input>
+                        </el-form-item>
+                        <el-form-item label="真实姓名">
+                            <el-input v-model="form.realName" placeholder="默认手机号"></el-input>
+                        </el-form-item>
+                        <el-form-item label="email">
+                            <el-input v-model="form.email" placeholder="默认手机号"></el-input>
+                        </el-form-item>
+
+                        <el-form-item label="备注">
+                            <el-input type="textarea" v-model="form.remark" style="width: 400px"></el-input>
+                        </el-form-item>
+                        <el-form-item label="昵称">
+                            <el-input v-model="form.name" placeholder="默认手机号" autocomplete="on"></el-input>
+                        </el-form-item>
+                        <el-form-item label="真实姓名">
+                            <el-input v-model="form.realName" placeholder="默认手机号"></el-input>
+                        </el-form-item>
+                        <el-form-item label="email">
+                            <el-input v-model="form.email" placeholder="默认手机号"></el-input>
+                        </el-form-item>
+
+                        <el-form-item label="备注">
+                            <el-input type="textarea" v-model="form.remark" style="width: 400px"></el-input>
+                        </el-form-item>
+                        <el-form-item label="昵称">
+                            <el-input v-model="form.name" placeholder="默认手机号" autocomplete="on"></el-input>
+                        </el-form-item>
+                        <el-form-item label="真实姓名">
+                            <el-input v-model="form.realName" placeholder="默认手机号"></el-input>
+                        </el-form-item>
+                        <el-form-item label="email">
+                            <el-input v-model="form.email" placeholder="默认手机号"></el-input>
+                        </el-form-item>
+
+                        <el-form-item label="备注">
+                            <el-input type="textarea" v-model="form.remark" style="width: 400px"></el-input>
+                        </el-form-item>
+                        <el-form-item label="昵称">
+                            <el-input v-model="form.name" placeholder="默认手机号" autocomplete="on"></el-input>
+                        </el-form-item>
+                        <el-form-item label="真实姓名">
+                            <el-input v-model="form.realName" placeholder="默认手机号"></el-input>
+                        </el-form-item>
+                        <el-form-item label="email">
+                            <el-input v-model="form.email" placeholder="默认手机号"></el-input>
+                        </el-form-item>
+
+                        <el-form-item label="备注">
+                            <el-input type="textarea" v-model="form.remark" style="width: 400px"></el-input>
+                        </el-form-item>
+                        <el-form-item label="昵称">
+                            <el-input v-model="form.name" placeholder="默认手机号" autocomplete="on"></el-input>
+                        </el-form-item>
+                        <el-form-item label="真实姓名">
+                            <el-input v-model="form.realName" placeholder="默认手机号"></el-input>
+                        </el-form-item>
+                        <el-form-item label="email">
+                            <el-input v-model="form.email" placeholder="默认手机号"></el-input>
+                        </el-form-item>
+
+                        <el-form-item label="备注">
+                            <el-input type="textarea" v-model="form.remark" style="width: 400px"></el-input>
+                        </el-form-item>
+                        <el-form-item label="昵称">
+                            <el-input v-model="form.name" placeholder="默认手机号" autocomplete="on"></el-input>
+                        </el-form-item>
+                        <el-form-item label="真实姓名">
+                            <el-input v-model="form.realName" placeholder="默认手机号"></el-input>
+                        </el-form-item>
+                        <el-form-item label="email">
+                            <el-input v-model="form.email" placeholder="默认手机号"></el-input>
+                        </el-form-item>
+
+                        <el-form-item label="备注">
+                            <el-input type="textarea" v-model="form.remark" style="width: 400px"></el-input>
+                        </el-form-item>
+                        <el-form-item label="昵称">
+                            <el-input v-model="form.name" placeholder="默认手机号" autocomplete="on"></el-input>
+                        </el-form-item>
+                        <el-form-item label="真实姓名">
+                            <el-input v-model="form.realName" placeholder="默认手机号"></el-input>
+                        </el-form-item>
+                        <el-form-item label="email">
+                            <el-input v-model="form.email" placeholder="默认手机号"></el-input>
+                        </el-form-item>
+
+                        <el-form-item label="备注">
+                            <el-input type="textarea" v-model="form.remark" style="width: 400px"></el-input>
+                        </el-form-item>
+                        <el-form-item label="昵称">
+                            <el-input v-model="form.name" placeholder="默认手机号" autocomplete="on"></el-input>
+                        </el-form-item>
+                        <el-form-item label="真实姓名">
+                            <el-input v-model="form.realName" placeholder="默认手机号"></el-input>
+                        </el-form-item>
+                        <el-form-item label="email">
+                            <el-input v-model="form.email" placeholder="默认手机号"></el-input>
+                        </el-form-item>
+
+                        <el-form-item label="备注">
+                            <el-input type="textarea" v-model="form.remark" style="width: 400px"></el-input>
+                        </el-form-item>
+                        <el-form-item label="昵称">
+                            <el-input v-model="form.name" placeholder="默认手机号" autocomplete="on"></el-input>
+                        </el-form-item>
+                        <el-form-item label="真实姓名">
+                            <el-input v-model="form.realName" placeholder="默认手机号"></el-input>
+                        </el-form-item>
+                        <el-form-item label="email">
+                            <el-input v-model="form.email" placeholder="默认手机号"></el-input>
+                        </el-form-item>
+
+                        <el-form-item label="备注">
+                            <el-input type="textarea" v-model="form.remark" style="width: 400px"></el-input>
+                        </el-form-item>
+                        <el-form-item label="昵称">
+                            <el-input v-model="form.name" placeholder="默认手机号" autocomplete="on"></el-input>
+                        </el-form-item>
+                        <el-form-item label="真实姓名">
+                            <el-input v-model="form.realName" placeholder="默认手机号"></el-input>
+                        </el-form-item>
+                        <el-form-item label="email">
+                            <el-input v-model="form.email" placeholder="默认手机号"></el-input>
+                        </el-form-item>
+
+                        <el-form-item label="备注">
+                            <el-input type="textarea" v-model="form.remark" style="width: 400px"></el-input>
+                        </el-form-item>
+                        <el-form-item label="昵称">
+                            <el-input v-model="form.name" placeholder="默认手机号" autocomplete="on"></el-input>
+                        </el-form-item>
+                        <el-form-item label="真实姓名">
+                            <el-input v-model="form.realName" placeholder="默认手机号"></el-input>
+                        </el-form-item>
+                        <el-form-item label="email">
+                            <el-input v-model="form.email" placeholder="默认手机号"></el-input>
+                        </el-form-item>
+
+                        <el-form-item label="备注">
+                            <el-input type="textarea" v-model="form.remark" style="width: 400px"></el-input>
+                        </el-form-item>
+                        <el-form-item label="昵称">
+                            <el-input v-model="form.name" placeholder="默认手机号" autocomplete="on"></el-input>
+                        </el-form-item>
+                        <el-form-item label="真实姓名">
+                            <el-input v-model="form.realName" placeholder="默认手机号"></el-input>
+                        </el-form-item>
+                        <el-form-item label="email">
+                            <el-input v-model="form.email" placeholder="默认手机号"></el-input>
+                        </el-form-item>
+
+                        <el-form-item label="备注">
+                            <el-input type="textarea" v-model="form.remark" style="width: 400px"></el-input>
+                        </el-form-item>
 
                         <el-form-item>
                             <el-button :loading="loadingBase" :disabled="disabledButtonBase" type="primary" @click="onSubmit">确定</el-button>

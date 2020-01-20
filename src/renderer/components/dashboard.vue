@@ -4,34 +4,39 @@
         <!--TESTER-->
     <!--</div>-->
     <div class="dashboard">
-        <div style="margin: 15px;">
-            <el-row :gutter="20">
-                <el-col :span="5">
-                    <div class="grid-content bg-purple">
-                        标记
-                    </div>
-                </el-col>
-                <el-col :span="5">
-                    <div class="grid-content bg-purple">
-                        开发中
-                    </div>
-                </el-col>
-                <el-col :span="5">
-                    <div class="grid-content bg-purple">
-                        测试中
-                    </div>
-                </el-col>
-                <el-col :span="4">
-                    <div class="grid-content bg-purple">
-                        测试中
-                    </div>
-                </el-col>
-                <el-col :span="4">
-                    <div class="grid-content bg-purple">
-                        已上线
-                    </div>
-                </el-col>
-            </el-row>
+        <div style="margin: 10px;">
+            <div>
+                asd
+            </div>
+            <div>
+                <el-row :gutter="20">
+                    <el-col :span="5">
+                        <div class="grid-content bg-purple">
+                            标记
+                        </div>
+                    </el-col>
+                    <el-col :span="5">
+                        <div class="grid-content bg-purple">
+                            开发中
+                        </div>
+                    </el-col>
+                    <el-col :span="5">
+                        <div class="grid-content bg-purple">
+                            测试中
+                        </div>
+                    </el-col>
+                    <el-col :span="4">
+                        <div class="grid-content bg-purple">
+                            待上线
+                        </div>
+                    </el-col>
+                    <el-col :span="4">
+                        <div class="grid-content bg-purple">
+                            已上线
+                        </div>
+                    </el-col>
+                </el-row>
+            </div>
         </div>
     </div>
 </template>
